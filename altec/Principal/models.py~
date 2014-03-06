@@ -1,0 +1,17 @@
+from django.db import models
+from django.contrib.auth.models import User
+
+class Usuario(models.Model):
+	tipos=(
+		(u'V',u'Vendedor'),
+		(u'C',u'Comprador'),
+		(u'A',u'Administrador'),
+	)
+	pNombre=models.CharField(max_length=100,verbose_name='Primer Nombre')
+	sNombre=models.CharField(max_length=100,verbose_name='Segundo Nombre')
+	pApellido=models.CharField(max_length=100,verbose_name='Primer Apellido')
+	sApellido=models.CharField(max_length=100,verbose_name='Segundo Apellido')
+	telefono=models.IntegerField(verbose_name='Telefono',null=True)
+	tipo=models.CharField(max_length=20,choices=tipos)
+	def __unicode__(self):
+		return '%s - %s %s %s %s' % (self.tipo,self.pNombre,self.sNombre,self.pApellido,self.sApellido)

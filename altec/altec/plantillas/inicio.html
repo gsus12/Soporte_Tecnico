@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang='es'>	
+	<head>
+		<meta charset='utf-8'>
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/estilo.css">
+		<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/boton.css">
+		<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/jqueryui.css">
+		<script type="text/javascript" src='{{STATIC_URL}}js/jquery-1.8.3.js'></script>
+		<script type="text/javascript" src='{{STATIC_URL}}js/jquery-ui-1.10.3.custom.min.js'></script>
+		<script type="text/javascript" src='{{STATIC_URL}}js/funcion.js'></script>
+	
+		<script type="text/javascript" src='{{STATIC_URL}}js/jquery-cookie.js'></script>
+
+		<script type="text/javascript">
+			$.ajaxSetup({
+				beforeSend: function(xhr){
+					xhr.setRequestHeader('X-CSRFToken',$.cookie('csrftoken'));
+				}
+
+			});
+		</script>
+
+	</head>
+	<body>
+		<header>
+			
+			<img src="{{STATIC_URL}}image/stlogo.png">
+			
+			
+		</header>
+		<nav>
+			<ul>
+				<li><a id='inicio'>Inicio</a></li>
+				<li><a id='cliente'>Cliente</a></li>
+				<li><a id='empleado'>Empleado</a></li>
+				<li><a id='os'>Orden de servicio</a></li>
+				<li><a id='salir'>Salir</a></li>
+
+			</ul>
+		</nav>
+		<div id='ventana_inicio' class='forma'>
+
+		</div>
+		<div id='ventana_cliente' class='forma'>
+			<h2>Lista de clientes</h2>
+			<div id='lista_cliente' class='lista'>
+			<br>
+			</div>
+			<br>
+			<a id='agrega_cliente'>Agregar</a>
+			<input type='text' id='buscar_cliente'>
+			<a id='busca_cliente'>Buscar</a>
+			
+			<br>
+		</div>
+
+		<div id='ventana_empleado' class='forma'>
+			<h2>Lista de Empleados</h2>
+			<div id='lista_empleado' class='lista'>
+				<br>
+			</div><br>
+			<a id='agrega_empleado'>Agregar</a>
+			<input type='text' id='buscar_empleado'>
+			<a id='busca_empleado'>Buscar</a>
+			<br>
+		</div>
+		<div id='ventana_os' class='forma'>
+			<h2>Ordenes de servicio</h2>
+			<div id='lista_os' class='lista'>
+				<br>
+				
+			</div><br>
+			<a id='agrega_os'>Agregar</a>
+			<input type='text' id='buscar_os'>
+			<a id='busca_os'>Buscar</a>
+			
+			<br>
+		</div>
+
+		<div id='formulario_cliente' class='forma'>
+			<br>
+			<fieldset>
+				<h2>Nuevo Cliente</h2>	
+				<label>Tipo de Cliente: </label>
+				<select id='tipo_cliente'>
+					<option value='empresa'>Empresa</option>
+					<option value='persona'>Persona</option>
+				</select>
+				<label>CC o Nit: </label>
+				<input type='text' id='identificacion_c'><br>
+				<label id='nombre_empresa'>Nombre:</label>
+				<input type='text' id='nombre_c'>
+				<label id='nombre_persona'>Nombres: </label>
+				<input type='text' id='nombres_c'><br>
+				<label id='apellido_persona'>Apellidos: </label>
+				<input type='text' id='apellidos_c'><br>
+				<label>Telefono: </label>
+				<input type='text' id='telefono_c'><br>
+				<label>Direccion: </label>
+				<input type='text' id='direccion_c'><br>
+				<label>Ciudad: </label>
+				<input type='text' id='ciudad_c'>
+				<br>
+				
+				<div id="mensajes_cliente"></div>
+				
+				<br>
+				<a id='guardar_cliente'>Guardar</a>
+				<a id='actualizar_cliente'>Actualizar</a>
+
+				<a id='cancelar_cliente'>Cancelar</a>
+				<br>
+				<br>
+			</fieldset>
+			<br>
+		</div>
+		<div id='formulario_empleado' class='forma'>
+			<br>
+			<fieldset>
+				<h2>Nuevo Tecnico</h2><br>
+				<label>C.C.</label>
+				<input type='text' id='identificacion_e'><br>
+				<label>Nombres</label>
+				<input type='text' id='nombre_e'><br>
+				<label>Apellidos</label>
+				<input type='text' id='apellido_e'><br>
+				<label>Telefono</label>
+				<input type='text' id='telefono_e'><br>
+				<label>Direccion</label>
+				<input type='text' id='direccion_e'><br>
+				<label>Tipo Tecnico:</label>
+				<select id='tipo_tecnico'>
+					<option></option>
+					<option value='vinculado'>Vinculado</option>
+					<option value='contratista'>Contratista</option>
+				</select>
+				<br>
+				<div id="mensajes_empleado"></div>
+				<br>
+				<a id='guardar_empleado'>Guardar</a>
+				<a id='actualizar_empleado'>Actualizar</a>
+
+				<a id='cancelar_empleado'>Cancelar</a>
+				<br><br>
+			</fieldset>
+			<br>
+		</div>
+		<div id='formulario_os'>
+			<br>
+			<fieldset id='info_cliente'>
+				<h2>Nueva Orden de Servicio</h2><br>	
+				<label>Orden</label>
+				<input type='text' id='numero_orden'><br>
+				<label>Cliente</label>
+				<input type='text' id='nombre_cliente'><br>
+				<label>Telefono</label>
+				<input type='text' id='telefono_cliente'><br>
+				<label>Direccion</label>
+				<input type='text' id='direccion_cliente'><br>
+				<label>Ciudad</label>
+				<input type='text' id='ciudad_cliente'><br>
+				<label>Nit/CC</label>
+				<input type='text' id='identificacion_cliente'><br>
+				<label>Fecha</label>
+				<input type='text' id='fecha_os'><br>
+			
+				<label>Tipo de Servicio</label>
+				<select id='tipo_servicio'>
+					<option></option>
+					<option value='instalacion'>Instalacion</option>
+					<option value='mantenimiento_preventino'>Mantenimiento Preventino</option>
+					<option value='mantenimiento_correctivo'>Mantenimiento Correctivo</option>
+					<option value='otro'>Otro</option>
+				</select><br>
+				<label>Motivo del servicio</label>
+				<textarea id='motivo_servicio'></textarea><br>
+				<label>Problema encontrado</label>
+				<textarea id='problema_encontrado'></textarea><br>
+				<label>Actividad Realizada</label>
+				<textarea id='actividad_realizada'></textarea><br><br>
+				<label>Pendiente</label>
+				<!--label>Si</label-->
+				Si
+				<input type='radio' name='grupo1' value='Si' id='pendientesi'>
+				<!--label>No</label-->
+				No
+				<input type='radio' name='grupo1' value='No' id='pendienteno'><br>
+				<label>Garantia</label>
+				<!--label>Si</label-->
+				Si
+				<input type='radio' name='grupo2' value='Si' id='garantiasi'> 
+				<!--label>No</label-->
+				No
+
+				<input type='radio' name='grupo2' value='No' id='garantiano'><br>
+				<label>Facturable</label>
+				<!--label>Si</label-->
+				Si
+				<input type='radio' name='grupo3' value='Si' id='factusi'>
+				<!--label>No</label-->
+				No
+				<input type='radio' name='grupo3' value='No' id='factuno'><br><br>
+				<label>Observaciones Tecnico</label>
+				<textarea id='observacion_tecnico'></textarea><br>
+				<label>Observaciones Cliente</label>
+				<textarea id='observacion_cliente'></textarea><br>
+			
+				<label>Hora de Entrada</label>
+				<input type='text' id='hora_entrada'><br>
+				<label>Hora de Salida</label>
+				<input type='text' id='hora_salida'><br>
+				<br>
+				<div id="mensajes_os"></div>
+				<br>
+				<a id='guardar_os'>Guardar</a>
+				<a id='actualizar_os'>Actualizar</a>
+
+				<a id='cancelar_os'>Cancelar</a>
+				<br>
+				<br>
+			</fieldset>
+			<br>
+
+			
+		</div>
+		<br>
+		<footer></footer>
+	</body>
+
+</html>

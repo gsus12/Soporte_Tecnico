@@ -1,0 +1,6 @@
+from Principal.models import Usuario,Producto,Pedido
+from django.contrib import admin
+
+admin.site.register(Usuario)
+admin.site.register(Producto)
+admin.site.register(Pedido)
